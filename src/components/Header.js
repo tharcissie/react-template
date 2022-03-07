@@ -31,8 +31,6 @@ const Header = () => {
           <MDBNavbarNav>
             <Link style={{ textDecoration: "none" }} className='text-light nav-link' to='/'>
               All Users </Link>
-            <Link to='/posts' className='text-light nav-link' style={{ textDecoration: "none" }} >Posts</Link>
-            <Link style={{ textDecoration: "none" }} className='text-light nav-link' to='/albums'>Albums</Link>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBContainer>

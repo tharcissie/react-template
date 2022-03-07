@@ -40,7 +40,7 @@ const useStyles = makeStyles(({ spacing }) => ({
 
 
 
-const UserCard = React.memo(function ElevatedHeaderCard() {
+const UserCard = React.memo(function ElevatedHeaderCard(props) {
     const classes = useStyles();
     const cardHeaderStyles = useContainedCardHeaderStyles();
     const cardShadowStyles = useSoftRiseShadowStyles({ inactive: true });
@@ -50,35 +50,35 @@ const UserCard = React.memo(function ElevatedHeaderCard() {
             <CardHeader
                 className={cardHeaderShadowStyles.root, cx(classes.h)}
                 classes={cardHeaderStyles}
-                title={'Yves Byiringiro'}
-                subheader={'byiringiro@gmail.com'}
+                title={props.name}
+                subheader={props.email}
             />
             <CardContent className={classes.content}>
                 <Table>
                     <TableBody>
-                        <TableRow key={1}>
+                        <TableRow>
                             <TableCell component="th" scope="row">
                                 City:
                             </TableCell>
-                            <TableCell align="right">Kigali</TableCell>
+                            <TableCell align="right">{props.city}</TableCell>
                         </TableRow>
-                        <TableRow key={1}>
+                        <TableRow >
                             <TableCell component="th" scope="row">
                                 Street:
                             </TableCell>
-                            <TableCell align="right">k23</TableCell>
+                            <TableCell align="right">{props.street}</TableCell>
                         </TableRow>
-                        <TableRow key={1}>
+                        <TableRow>
                             <TableCell  component="th" scope="row">
                                 Phone:
                             </TableCell>
-                            <TableCell align="right">+122 223 2222</TableCell>
+                            <TableCell align="right">{props.phone}</TableCell>
                         </TableRow>
-                        <TableRow key={1}>
+                        <TableRow>
                             <TableCell component="th" scope="row">
-                               <Link style={{color:'#03045E', textDecoration:'none'}} to='/posts'> <DynamicFeedIcon/>Posts</Link>
+                               <a onClick={props.onClickPosts} style={{color:'#03045E', textDecoration:'none', cursor: 'pointer'}} > <DynamicFeedIcon/>Posts</a>
                             </TableCell>
-                            <TableCell align="right"><Link  style={{color:'#03045E', textDecoration:'none'}}  to='albums'><PhotoAlbumIcon/>Albums</Link></TableCell>
+                            <TableCell align="right"><a onClick={props.onClickAlbums}  style={{color:'#03045E', textDecoration:'none', cursor: 'pointer'}}><PhotoAlbumIcon/>Albums</a></TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

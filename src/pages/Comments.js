@@ -1,25 +1,26 @@
 import React, { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import Header from '../components/Header'
-import PostCard from '../components/PostCard'
+import CommentCard from '../components/CommentCard'
 import { useNavigate, useParams } from "react-router";
 import { useDispatch, useSelector } from 'react-redux';
-import { getPosts, postsSelector } from '../slices/PostsSlice';
+import { getComments, commentsSelector } from '../slices/CommentsSlice';
 import { Box, LinearProgress } from '@material-ui/core';
 
-const Posts = () => {
+const Comments = () => {
 
     const { id } = useParams()
     console.log('id', id)
 
     const dispatch = useDispatch()
-    const { isFetching, posts } = useSelector(postsSelector)
+    const { isFetching, comments } = useSelector(commentsSelector)
 
-    console.log('posts', posts)
+
+    console.log('comments', comments)
     const navigate = useNavigate()
 
     useEffect(() => {
-        dispatch(getPosts());
+        dispatch(getComments());
     }, [dispatch]);
 
     return (
@@ -27,26 +28,28 @@ const Posts = () => {
             <Header />
             <Container className='mt-4'>
                 <div>
-                    <h2>Posts</h2>
+                    <h2>Comments</h2>
                     <p> here Project description goes here Project description goes here Project description goes here Project description goes here Project description goes here Project description goes here Project description goes here Project description goes here Project description goes here Project description goes here Project description goes here Project description goes here Project description goes here </p>
                 </div>
+
                 {isFetching ? <Box sx={{ width: '100%' }}>
                     <LinearProgress />
-                </Box> :
-                    <Row className='mt-2'>
+                </Box> : <Row className='mt-2'>
 
-                        {posts.map((post, i) => {
-                            if (post.userId == id) {
+                    {
+                        comments.map((comment, i) => {
+                            if (comment.postId == id) {
                                 return (
                                     <Col key={i} className='md-4 mt-5'>
-                                        <PostCard title={post.title} body={post.body} onClick={() => navigate(`/posts/${post.id}/comments`)} />
+                                        <CommentCard name={comment.name} body={comment.body} email={comment.email} />
                                     </Col>)
                             }
-                        })}
-                    </Row>}
+                        })
+                    }
+                </Row>}
             </Container>
         </div>
     )
 }
 
-export default Posts
+export default Comments

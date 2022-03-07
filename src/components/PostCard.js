@@ -5,23 +5,22 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 
-const PostCard = () => {
+const PostCard = (props) => {
   return (
     <Card sx={{ width: '9cm' }}>
     <CardActionArea>
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          Lizard are weird
+          {props.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {props.body}
         </Typography>
       </CardContent>
     </CardActionArea>
     <CardActions>
-      <Button  style={{color:'#03045E'}}  size="small" color="primary">
-     12<ChatBubbleIcon/>
+      <Button onClick={props.onClick} style={{color:'#03045E'}}  size="small" color="primary">
+     View Comments<ChatBubbleIcon/>
       </Button>
     </CardActions>
   </Card>
